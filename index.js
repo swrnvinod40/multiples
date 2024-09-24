@@ -49,7 +49,7 @@ function resolve(cart, rules) {
     let qualifiedQuantity = _.sumBy(cartItems, 'quantity');
     console.log('qualified quantity ', qualifiedQuantity);
     let combinationsArray = combinations(rule, qualifiedQuantity);
-    console.log(combinationsArray);
+    console.log({...combinationsArray});
   });
 }
 
@@ -58,6 +58,7 @@ function combinations(rule, remainingQuantity, combinationsArray = []) {
   if (remainingQuantity > 0 && remainingQuantity >= rule.quantity) {
     if (remainingQuantity % rule.quantity == 0) {
       combinationsArray.push(remainingQuantity / rule.quantity);
+      remainingQuantity = remainingQuantity - (remainingQuantity / rule.quantity) * rule.quantity
       console.log('if');
     } else {
       console.log('else');
